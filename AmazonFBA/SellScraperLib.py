@@ -13,7 +13,7 @@ def handle_none_attr(data):
 
 def open_page(link):
     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
-    proxy_api_key = "be96c2b670dfeb6693ebd9ef15d53d63"
+    proxy_api_key = ""
     proxy_url =  ("scraperapi.follow_redirect=false.render=true.retry_404=true.country_code=eu.device_type=desktop:%s@proxy-server.scraperapi.com:8001" % (proxy_api_key))
     proxies = {"http": proxy_url}
     try:
@@ -27,7 +27,7 @@ def get_amazon_listings(ebay_title):
     products_list = {}
     count = 0
 
-    payload = { 'api_key': 'be96c2b670dfeb6693ebd9ef15d53d63', 'query': ebay_title }
+    payload = { 'api_key': '', 'query': ebay_title }
     r = requests.get('https://api.scraperapi.com/structured/amazon/search', params=payload)
     results = (json.loads(r.text))
     for item in results["results"]:
@@ -41,7 +41,7 @@ def get_amazon_listings(ebay_title):
     return products_list
     
 def get_scraper_stats():
-    payload = {'api_key': 'be96c2b670dfeb6693ebd9ef15d53d63'}
+    payload = {'api_key': ''}
     r = requests.get('http://api.scraperapi.com/account', params=payload)
     print(r.text)
 
